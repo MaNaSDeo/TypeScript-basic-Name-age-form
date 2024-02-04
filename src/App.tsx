@@ -1,17 +1,18 @@
 import Input from "./components/Input";
 import Button from "./components/Button";
-import Container from "./components/Container";
-import { useRef } from "react";
 import Form from "./components/Form";
 
 function App() {
-  // const input = useRef<HTMLInputElement>(null);
+  function handleSave(data: unknown) {
+    const extractedData = data as { name: string; age: string };
+    console.log(extractedData);
+  }
 
   return (
     <main>
-      <Form>
-        <Input label="Name" id="name" type="text" />
-        <Input label="Age" id="age" type="number" />
+      <Form onSave={handleSave}>
+        <Input label="Name" id="name" type="text" name="name" />
+        <Input label="Age" id="age" type="number" name="age" />
         <p>
           <Button>Save</Button>
         </p>
