@@ -1,19 +1,21 @@
-// Import the ElementType type from React
-import { type ElementType } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  type ElementType,
+  type ReactNode,
+} from "react";
 
-// Define a type for the container component props
-type ContainerProps = {
-  // The prop 'as' is an element type that can be rendered by React
-  as: ElementType;
-};
+type ContainerProps<T extends ElementType> = {
+  as?: T;
+  children: ReactNode;
+} & ComponentPropsWithoutRef<T>;
 
-// Define a container component that takes the 'as' prop and renders it
-function Container({ as }: ContainerProps) {
-  // Assign the 'as' prop to a variable named 'Component'
-  const Component = as;
-  // Return the JSX element of the 'Component' type
-  return <Component />;
+function Container<C extends ElementType>({
+  as,
+  children,
+  ...props
+}: ContainerProps<C>) {
+  const Component = as || "div";
+  return <Component {...props}>{children}</Component>;
 }
 
-// Export the container component as a default export
 export default Container;
