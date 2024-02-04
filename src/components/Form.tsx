@@ -38,7 +38,7 @@ const Form = forwardRef<FormHandle, FormProps>(function Form(
   }
 
   return (
-    <form onSubmit={handleSubmit} {...otherProps}>
+    <form onSubmit={handleSubmit} {...otherProps} ref={form}>
       {children}
     </form>
   );
